@@ -11,6 +11,11 @@ import paymentRoutes from "./routes/paymentRoutes.js";
 import connectDB from "./config/db.js";
 import cors from "cors";
 import path from "path";
+import { fileURLToPath } from "url";
+
+//esmodule fix
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // configure env file
 dotenv.config();
@@ -39,7 +44,6 @@ app.use(express.static(path.join(__dirname, "./frontend/build")));
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./frontend/build/index.html"));
 });
-
 
 // PORT
 const PORT = process.env.PORT || 8000;
