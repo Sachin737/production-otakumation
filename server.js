@@ -10,7 +10,7 @@ import paymentRoutes from "./routes/paymentRoutes.js";
 
 import connectDB from "./config/db.js";
 import cors from "cors";
-import path from "paths";
+import path from "path";
 
 // configure env file
 dotenv.config();
