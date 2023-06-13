@@ -371,7 +371,7 @@ const similarProductsController = async (req, res) => {
 const CateoryWiseProductsController = async (req, res) => {
   try {
     const category = await categoryModel.find({ slug: req.params.slug });
-    const products = await productModel.find({ category }).populate("category");
+    const products = await productModel.find({ category }).populate("category").select("-photo");
     res.status(200).send({
       success: true,
       category,
