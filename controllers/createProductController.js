@@ -246,7 +246,7 @@ const productFilterController = async (req, res) => {
     if (price.length) {
       Queries.price = { $gte: price[0], $lte: price[1] };
     }
-    const prods = await productModel.find(Queries);
+    const prods = await productModel.find(Queries).select("-photo");
 
     res.status(200).send({
       success: true,
