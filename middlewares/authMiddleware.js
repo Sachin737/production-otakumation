@@ -4,7 +4,6 @@ import userModel from "../models/userModel.js";
 // Protection middlewares
 const protectRoute = async (req, res, next) => {
   try {
-    // console.log(req?.headers?.authorization, "||", process.env.JWT_SECRET);
 
     const decode = JWT.verify(
       req?.headers?.authorization,
