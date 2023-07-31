@@ -105,7 +105,7 @@ const singleProductController = async (req, res) => {
       product,
     });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send({
       success: false,
       message: "Error while fetching your product!",
@@ -130,7 +130,7 @@ const productPhotoController = async (req, res) => {
       message: "Error while fetching photo!",
     });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send({
       success: false,
       message: "Error while fetching photo!",
@@ -146,7 +146,7 @@ const deleteProductController = async (req, res) => {
     const product = await productModel.findById(pid).select("-photo");
     await productModel.findByIdAndDelete(pid).select("-photo");
 
-    // console.log(pid);
+    // //console.log(pid);
 
     res.status(200).send({
       success: true,
@@ -154,7 +154,7 @@ const deleteProductController = async (req, res) => {
       product,
     });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send({
       success: false,
       message: "Error while deleting product!",
@@ -253,7 +253,7 @@ const productFilterController = async (req, res) => {
       prods,
     });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send({
       success: false,
       message: "Error in filtering!",
@@ -271,7 +271,7 @@ const productsCountController = async (req, res) => {
       totalCount,
     });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send({
       success: false,
       message: "Error in getting count of products!",
@@ -290,14 +290,15 @@ const productsPageController = async (req, res) => {
       .find({})
       .select("-photo")
       .skip(perPage * (page - 1))
-      .limit(perPage);
+      .limit(perPage)
+      .sort({createdAt : -1});
 
     res.status(200).send({
       success: true,
       products,
     });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send({
       success: false,
       message: "Error in getting current page's products!",
@@ -330,7 +331,7 @@ const productSearchController = async (req, res) => {
       products,
     });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send({
       success: false,
       message: "Error in searching products!",
@@ -358,7 +359,7 @@ const similarProductsController = async (req, res) => {
       products,
     });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send({
       success: false,
       message: "error in getting similar products",
@@ -378,7 +379,7 @@ const CateoryWiseProductsController = async (req, res) => {
       products,
     });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send({
       success: false,
       message: "error in getting category wise products",

@@ -73,7 +73,7 @@ const registerController = async (req, res) => {
       newUser,
     });
   } catch (err) {
-    console.log(err);
+    // //console.log(err);
     res.status(500).send({
       success: false,
       message: "Registration error!",
@@ -132,7 +132,7 @@ const loginController = async (req, res) => {
       token,
     });
   } catch (err) {
-    console.log(err);
+    // //console.log(err);
     res.status(500).send({
       success: false,
       message: "Login error!",
@@ -185,7 +185,7 @@ const forgotPasswordController = async (req, res) => {
       message: "Password changed successfully",
     });
   } catch (err) {
-    console.log(err);
+    // //console.log(err);
     res.status(500).send({
       success: false,
       message: "Something went wrong!",
@@ -207,7 +207,7 @@ const updateUserProfileController = async (req, res) => {
     const { name, email, address, phone, password } = req?.body;
     const user = await userModel.findById(req?.user?._id);
 
-    // console.log(user);
+    // //console.log(user);
 
     // Match password with hashedPass in database
     const hashedPass = user.password;
@@ -237,7 +237,7 @@ const updateUserProfileController = async (req, res) => {
       updatedUser,
     });
   } catch (err) {
-    console.log(err);
+    // //console.log(err);
     res.status(500).send({
       success: false,
       message: "Error in profile update!",
@@ -261,14 +261,14 @@ const updateUserCartController = async (req, res) => {
         new: true,
       }
     );
-    // console.log("ho gya");
+    // //console.log("ho gya");
 
     res.status(200).send({
       success: true,
       updatedCart,
     });
   } catch (err) {
-    console.log(err);
+    // //console.log(err);
     res.status(500).send({
       success: false,
       message: "Error in cart update!",
@@ -289,7 +289,7 @@ const getUserCartController = async (req, res) => {
       cart,
     });
   } catch (err) {
-    console.log(err);
+    // //console.log(err);
     res.status(500).send({
       success: false,
       message: "Error in fetching user cart!",
@@ -303,21 +303,21 @@ const removeProductCartController = async (req, res) => {
   try {
     const user = await userModel.findById(req?.user?._id);
     const { id } = req.params;
-    // console.log(id);
+    // //console.log(id);
 
     const { updatedCart } = await userModel.findByIdAndUpdate(
       user?._id,
       { $pull: { cart: { _id: id } } },
       { new: true }
     );
-    // console.log(updatedCart);
+    // //console.log(updatedCart);
 
     res.status(200).send({
       success: true,
       updatedCart,
     });
   } catch (err) {
-    console.log(err);
+    // //console.log(err);
     res.status(500).send({
       success: false,
       message: "Error in removing product fro cart!",
@@ -335,7 +335,7 @@ const userOrdersController = async (req, res) => {
       .populate("buyer", "name");
     res.json(orders);
   } catch (err) {
-    console.log(err);
+    // //console.log(err);
     res.status(500).send({
       success: false,
       message: "Error in getting user orders",
@@ -354,7 +354,7 @@ const adminOrdersController = async (req, res) => {
       .sort({ createdAt: "-1" });
     res.json(orders);
   } catch (err) {
-    console.log(err);
+    // //console.log(err);
     res.status(500).send({
       success: false,
       message: "Error in getting user orders",
@@ -369,7 +369,7 @@ const OrderStatusController = async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
 
-    // console.log(id, status);
+    // //console.log(id, status);
     const orders = await orderModel.findByIdAndUpdate(
       id,
       { status },
@@ -377,7 +377,7 @@ const OrderStatusController = async (req, res) => {
     );
     res.json(orders);
   } catch (err) {
-    console.log(err);
+    // //console.log(err);
     res.status(500).send({
       success: false,
       message: "Error in updating order status",

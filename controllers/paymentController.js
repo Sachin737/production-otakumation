@@ -29,7 +29,7 @@ const generateTokenController = async (req, res) => {
       }
     });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send({
       success: false,
       message: "Error in generating braintree token",
@@ -71,7 +71,7 @@ const btPaymentController = async (req, res) => {
       }
     );
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send({
       success: false,
       message: "Error in completing payment",

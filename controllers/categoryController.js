@@ -46,8 +46,6 @@ const updateCategoryController = async (req, res) => {
     const { name } = req.body;
     const { id } = req.params;
 
-    // console.log(name);
-
     if (!name) {
       return res.status(401).send({
         success: false,
@@ -82,11 +80,11 @@ const updateCategoryController = async (req, res) => {
 const allCategoriesController = async (req, res) => {
   try {
     const category = await categoryModel.find({});
-    // console.log(data);
+
     res.status(201).send({
       success: true,
       message: "All categories",
-      category,
+      category
     });
   } catch (err) {
     res.status(500).send({
@@ -103,11 +101,19 @@ const singleCategoryController = async (req, res) => {
     const { slug } = req.params;
 
     const data = await categoryModel.findOne({ slug: slug });
-    res.status(201).send({
-      success: true,
-      message: "category found successfully!",
-      data,
-    });
+    
+    if(data){
+      res.status(201).send({
+        success: true,
+        message: "category found successfully!",
+        data,
+      });
+    }else{
+      res.status(400).send({
+        success: false,
+        message: "No such category exist!",
+      });  
+    }
   } catch (err) {
     res.status(500).send({
       success: false,
