@@ -261,8 +261,6 @@ const updateUserCartController = async (req, res) => {
         new: true,
       }
     );
-    // //console.log("ho gya");
-
     res.status(200).send({
       success: true,
       updatedCart,
